@@ -4,7 +4,6 @@ export const useMediaQuery = (query: string):boolean => {
     const getMatches = (query:string) => {
         return window.matchMedia(query).matches;
     }
-
     const [matches, setMatches] = useState<boolean>(getMatches(query));
     useEffect(() => {
         const matchMedia = window.matchMedia(query);
@@ -16,3 +15,5 @@ export const useMediaQuery = (query: string):boolean => {
     }, [query]);
     return matches;
 }
+
+export default useMediaQuery;

@@ -1,21 +1,12 @@
 import React from 'react';
-import {useMediaQuery} from "./hooks/useMediaQuery";
-
-export interface MediaQueryProps {
-    maxHeight?: string | number,
-    minHeight?: string | number,
-    maxWidth?: string | number,
-    minWidth?: string | number,
-    maxResolution?: string | number,
-    minResolution?: string | number,
-    orientation?: string,
-    children: JSX.Element | string | JSX.Element[],
-}
+import {useMediaQuery} from "./useMediaQuery";
+import {MediaQueryProps} from "./MediaQuery.types";
 
 
 const MediaQuery: React.FC<MediaQueryProps> = (props: MediaQueryProps) => {
+
     function queryCreate (mediaProps:number | string, mediaName:string , query: string) : string {
-        let mediaQuery = " ";
+        let mediaQuery = "";
         if(mediaName !== 'orientation' && mediaName !== 'max-resolution' && mediaName !== 'min-resolution'){
             mediaQuery = typeof mediaProps == "number" ? (`(${mediaName}: ${mediaProps}px)`) : (`(${mediaName}: ${mediaProps})`);
         } else if (mediaName === 'orientation'){
@@ -35,14 +26,12 @@ const MediaQuery: React.FC<MediaQueryProps> = (props: MediaQueryProps) => {
     query += (props.maxResolution && queryCreate(props.maxResolution, "max-resolution", query)) || "";
     query += (props.orientation && queryCreate(props.orientation, "orientation", query)) || "";
 
+    const matches = useMediaQuery(query);
 
-
-    const media = useMediaQuery(query);
-    console.log(media + " " + query);
     return (
-        <>
-            {media && props.children}
-        </>
+        <div>
+            {typeof props.children === "function" ? (props.children && props.children(matches)) : (matches && props.children)}
+        </div>
     );
 }
 

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
+import useMediaQuery from "./useMediaQuery";
 
-export const  useDocumentVisibility = () => {
+const  useDocumentVisibility = () => {
     const [visible, setVisible] = useState<boolean>(!document.hidden);
     const [count, setCount] = useState<number>(0)
 
@@ -22,3 +23,5 @@ export const  useDocumentVisibility = () => {
 
     return {visible, count, onVisibleChange};
 }
+
+export default useDocumentVisibility;
