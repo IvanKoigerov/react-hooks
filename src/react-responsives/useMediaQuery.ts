@@ -7,10 +7,10 @@ const useMediaQuery = (query: string): boolean => {
   const [matches, setMatches] = useState<boolean>(getMatches(query));
   useEffect(() => {
     const matchMedia = window.matchMedia(query);
-    setMatches(getMatches(query));
-    matchMedia.addEventListener('change', () => setMatches(getMatches(query)));
+    setMatches(matchMedia.matches);
+    matchMedia.addEventListener('change', () => setMatches(matchMedia.matches));
     return () => {
-      matchMedia.removeEventListener('change', () => setMatches(getMatches(query)));
+      matchMedia.removeEventListener('change', () => setMatches(matchMedia.matches));
     };
   }, [query]);
   return matches;

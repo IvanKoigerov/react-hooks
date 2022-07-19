@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 
 export interface MediaQueryProps {
-  maxHeight?: string | number;
-  minHeight?: string | number;
-  maxWidth?: string | number;
-  minWidth?: string | number;
-  maxResolution?: string | number;
-  minResolution?: string | number;
-  orientation?: string;
+  maxHeight?: number | `${number}px`;
+  minHeight?: number | `${number}px`;
+  maxWidth?: number | `${number}px`;
+  minWidth?: number | `${number}px`;
+  maxResolution?: number | `${number}dppx`;
+  minResolution?: number | `${number}dppx`;
+  orientation?: 'portrait' | 'landscape';
   children?: ReactNode | ((matches: boolean) => ReactNode);
 }
+

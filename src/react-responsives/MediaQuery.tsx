@@ -2,42 +2,26 @@ import { useCallback } from 'react';
 import useMediaQuery from './useMediaQuery';
 import { MediaQueryProps } from './MediaQuery.types';
 
-const MediaQuery = (props: MediaQueryProps) => {
-  const { children, ...matchesProps } = props;
+const MediaQuery = ({ children, ...props }: MediaQueryProps) => {
 
-  const queryCreate = useCallback((matchesProps: string | number, matchesNameProps: string, query: string): string => {
-    let mediaQuery;
-    if (
-      matchesNameProps !== 'orientation' &&
-      matchesNameProps !== 'max-resolution' &&
-      matchesNameProps !== 'min-resolution'
-    ) {
-      mediaQuery =
-        typeof matchesProps == 'number'
-          ? `(${matchesNameProps}: ${matchesProps}px)`
-          : `(${matchesNameProps}: ${matchesProps})`;
-    } else if (matchesNameProps === 'orientation') {
-      mediaQuery = `(${matchesNameProps}: ${matchesProps})`;
-    } else {
-      mediaQuery =
-        typeof matchesProps == 'number'
-          ? `(${matchesNameProps}: ${matchesProps}dppx)`
-          : `(${matchesNameProps}: ${matchesProps})`;
-    }
-    return (!query && mediaQuery) || ` and ${mediaQuery}`;
+  const queryCreate = useCallback((props: object): string => {
+    const matchesName = (name: string) => {
+      return `${name.slice(0, 3)}-${name.slice(3).toLowerCase()}`;
+    };
+    return Object.entries(props).map(([key, value]) => {
+      switch (key) {
+        case 'orientation':
+          return `(${key}: ${value})`;
+        case 'maxResolution':
+        case 'minResolution':
+          return typeof value === 'number' ? `(${matchesName(key)}: ${value}dppx)` : `(${matchesName(key)}: ${value})`;
+        default:
+          return typeof value === 'number' ? `(${matchesName(key)}: ${value}px)` : `(${matchesName(key)}: ${value})`;
+      }
+    }).join(' and ');
   }, []);
 
-  let query = '';
-
-  let key: keyof typeof matchesProps;
-  for (key in matchesProps) {
-    query +=
-      (matchesProps[key] &&
-        queryCreate(matchesProps[key]!, `${key.slice(0, 3)}-${key.slice(3).toLowerCase()}`, query)) ||
-      '';
-  }
-
-  const matches = useMediaQuery(query);
+  const matches = useMediaQuery(queryCreate(props));
 
   return <>{typeof children === 'function' ? children && children(matches) : matches && children}</>;
 };
