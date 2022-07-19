@@ -8,17 +8,20 @@ const useDocumentVisibility = () => {
     func(visible);
   }
 
+  const handleVisible = () => {
+    setVisible(!document.hidden);
+    if (document.hidden) {
+      setCount(count => count + 1);
+    }
+  };
+
   useEffect(() => {
-    document.addEventListener('visibilitychange', () => setVisible(!document.hidden));
+    document.addEventListener('visibilitychange', handleVisible);
 
     return () => {
-      document.removeEventListener('visibilitychange', () => setVisible(!document.hidden));
-
-      if (!visible) {
-        setCount(count + 1);
-      }
+      document.removeEventListener('visibilitychange', handleVisible);
     };
-  }, [count, visible]);
+  }, []);
 
   return { visible, count, onVisibleChange };
 };
