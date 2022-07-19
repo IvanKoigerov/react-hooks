@@ -8,9 +8,13 @@
 
 Состоящий из одного компонента MediaQuery и хука useMediaQuery
 
+https://www.npmjs.com/package/@ikoigerov/react-responsives
+
 **@ikoigerov/react-document-visibility**
 
 Состоящий из одного хука useDocumentVisibility
+
+https://www.npmjs.com/package/@ikoigerov/react-document-visibility
 
 ## Создан пример использования библиотек в codesandbox
 
