@@ -1,6 +1,6 @@
 {
   "name": "@ikoigerov/react-responsives",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "source": "src/react-responsives/react-responsives.ts",
   "main": "dist/react-responsives.js",
   "module": "dist/react-responsives.js",

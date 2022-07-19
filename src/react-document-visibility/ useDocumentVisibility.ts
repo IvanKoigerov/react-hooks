@@ -1,25 +1,26 @@
-import {useEffect, useState} from 'react';
-const  useDocumentVisibility = () => {
-    const [visible, setVisible] = useState<boolean>(!document.hidden);
-    const [count, setCount] = useState<number>(0)
+import { useEffect, useState } from 'react';
 
-    function onVisibleChange (func: (isVisible: boolean) => void) {
-        func(visible);
-    }
+const useDocumentVisibility = () => {
+  const [visible, setVisible] = useState<boolean>(!document.hidden);
+  const [count, setCount] = useState<number>(0);
 
-    useEffect(() => {
-        document.addEventListener("visibilitychange", () => setVisible(!document.hidden));
+  function onVisibleChange(func: (isVisible: boolean) => void) {
+    func(visible);
+  }
 
-        return () => {
-            document.removeEventListener("visibilitychange", () => setVisible(!document.hidden));
+  useEffect(() => {
+    document.addEventListener('visibilitychange', () => setVisible(!document.hidden));
 
-            if(!visible){
-                setCount(count+1);
-            }
-        }
-    }, [visible]);
+    return () => {
+      document.removeEventListener('visibilitychange', () => setVisible(!document.hidden));
 
-    return {visible, count, onVisibleChange};
-}
+      if (!visible) {
+        setCount(count + 1);
+      }
+    };
+  }, [count, visible]);
+
+  return { visible, count, onVisibleChange };
+};
 
 export default useDocumentVisibility;
