@@ -1,9 +1,9 @@
 import React from 'react';
-import {useMediaQuery} from "./useMediaQuery";
+import useMediaQuery from "./useMediaQuery";
 import {MediaQueryProps} from "./MediaQuery.types";
 
 
-const MediaQuery: React.FC<MediaQueryProps> = (props: MediaQueryProps) => {
+const MediaQuery = (props: MediaQueryProps) => {
 
     function queryCreate (mediaProps:number | string, mediaName:string , query: string) : string {
         let mediaQuery = "";

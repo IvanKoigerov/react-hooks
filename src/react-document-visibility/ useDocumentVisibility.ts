@@ -1,6 +1,4 @@
 import {useEffect, useState} from 'react';
-import useMediaQuery from "./useMediaQuery";
-
 const  useDocumentVisibility = () => {
     const [visible, setVisible] = useState<boolean>(!document.hidden);
     const [count, setCount] = useState<number>(0)
