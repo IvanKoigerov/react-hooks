@@ -1,12 +1,12 @@
 {
   "name": "@ikoigerov/react-responsives",
-  "version": "0.6.1",
+  "version": "0.6.3",
   "source": "src/react-responsives/react-responsives.ts",
   "main": "dist/react-responsives.js",
   "module": "dist/react-responsives.js",
   "unpkg": "dist/react-responsives.umd.js",
   "types": "dist/react-responsives.d.ts",
-  "amdName": "ReactResponsive",
+  "amdName": "ReactResponsives",
   "scripts": {
     "build": "microbundle build --no-compress --globals react=React --tsconfig tsconfig.build.json --jsx React.createElement"
   },

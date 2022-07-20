@@ -6,7 +6,7 @@ const MediaQuery = ({ children, ...props }: MediaQueryProps) => {
 
   const queryCreate = useCallback((props: object): string => {
     const matchesName = (name: string) => {
-      return `${name.slice(0, 3)}-${name.slice(3).toLowerCase()}`;
+      return name.replace(/[A-Z]/g, (name) => ('-' + name.toLowerCase()));
     };
     return Object.entries(props).map(([key, value]) => {
       switch (key) {
@@ -23,7 +23,7 @@ const MediaQuery = ({ children, ...props }: MediaQueryProps) => {
 
   const matches = useMediaQuery(queryCreate(props));
 
-  return <>{typeof children === 'function' ? children && children(matches) : matches && children}</>;
+  return typeof children === 'function' ? children(matches) : matches ? children : null;
 };
 
 export default MediaQuery;
