@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useDocumentVisibility = () => {
   const [visible, setVisible] = useState<boolean>(!document.hidden);
   const [count, setCount] = useState<number>(0);
+  let onVisibleCallBack = useRef<((isVisible: boolean) => void)[]>([]);
 
-  function onVisibleChange(func: (isVisible: boolean) => void) {
-    func(visible);
-  }
+  const onVisibleChange = (func: (isVisible: boolean) => void) => {
+    onVisibleCallBack.current.push(func);
+  };
 
   const handleVisible = () => {
     setVisible(!document.hidden);
     if (document.hidden) {
       setCount(count => count + 1);
     }
+    onVisibleCallBack.current.forEach(func => func(!document.hidden));
   };
 
   useEffect(() => {
