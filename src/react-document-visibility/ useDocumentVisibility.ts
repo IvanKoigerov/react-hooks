@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 const useDocumentVisibility = () => {
   const [visible, setVisible] = useState<boolean>(!document.hidden);
-  const [count, setCount] = useState<number>(0);
-  let onVisibleCallBack = useRef<((isVisible: boolean) => void)[]>([]);
+  const [count, setCount] = useState(0);
+  const onVisibleCallBack = useRef<((isVisible: boolean) => void)[]>([]);
 
   const onVisibleChange = (func: (isVisible: boolean) => void) => {
     onVisibleCallBack.current.push(func);

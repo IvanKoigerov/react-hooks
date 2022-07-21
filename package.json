@@ -1,6 +1,6 @@
 {
   "name": "@ikoigerov/react-document-visibility",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "source": "src/react-document-visibility/react-document-visibility.ts",
   "main": "dist/react-document-visibility.js",
   "module": "dist/react-document-visibility.js",
