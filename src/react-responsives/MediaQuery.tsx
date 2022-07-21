@@ -1,3 +1,4 @@
+import React from 'react';
 import useMediaQuery from './useMediaQuery';
 import { MediaQueryProps } from './MediaQuery.types';
 
@@ -21,7 +22,7 @@ const queryCreate = (props: object): string => {
 const MediaQuery = ({ children, ...props }: MediaQueryProps) => {
   const matches = useMediaQuery(queryCreate(props));
 
-  return typeof children === 'function' ? children(matches) : matches ? children : null;
+  return (typeof children === 'function' ? <>{children(matches)}</> : matches ? <>{children}</> : null);
 };
 
 export default MediaQuery;
