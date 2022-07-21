@@ -9,7 +9,7 @@ const useMediaQuery = (query: string): boolean => {
 
     const handleMatch = () => {
       setMatches(matchMedia.matches);
-    }
+    };
 
     matchMedia.addEventListener('change', handleMatch);
     return () => {
@@ -20,3 +20,4 @@ const useMediaQuery = (query: string): boolean => {
 };
 
 export default useMediaQuery;
+
