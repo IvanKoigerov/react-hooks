@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-interface IMediaQueryProps {
+export interface IMediaQueryProps {
   orientation?: 'portrait' | 'landscape';
   maxHeight?: number | `${number}px`;
   minHeight?: number | `${number}px`;

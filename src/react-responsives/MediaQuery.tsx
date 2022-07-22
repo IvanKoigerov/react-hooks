@@ -1,8 +1,8 @@
 import React from 'react';
 import useMediaQuery from './useMediaQuery';
-import { MediaQueryProps } from './MediaQuery.types';
+import { IMediaQueryProps, MediaQueryProps } from './MediaQuery.types';
 
-const queryCreate = (props: object): string => {
+const queryCreate = (props: IMediaQueryProps): string => {
   const matchesName = (name: string) => {
     return name.replace(/[A-Z]/g, (name) => ('-' + name.toLowerCase()));
   };
