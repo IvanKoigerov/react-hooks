@@ -16,6 +16,9 @@ const useMediaQuery = (query: string, serverValue = true): boolean => {
       matchMedia.removeEventListener('change', handleMatch);
     };
   }, [query]);
+
+  if (typeof document === 'undefined') return serverValue;
+
   return matches;
 };
 
