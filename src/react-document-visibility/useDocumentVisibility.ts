@@ -10,6 +10,9 @@ const useDocumentVisibility = () => {
     onVisibleCallBack.current.push(func);
   };
 
+  if (typeof document === 'undefined') return { visible, count, onVisibleChange };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
 
     const handleVisible = () => {
