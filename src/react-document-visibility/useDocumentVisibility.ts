@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 const useDocumentVisibility = () => {
-  const [visible, setVisible] = useState(!document.hidden);
+
+  const [visible, setVisible] = useState(typeof document !== 'undefined' ? !document.hidden : true);
   const [count, setCount] = useState(0);
   const onVisibleCallBack = useRef<((isVisible: boolean) => void)[]>([]);
 

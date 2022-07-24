@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const useMediaQuery = (query: string, serverValue = true): boolean => {
+  if (typeof document === 'undefined') return serverValue;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const matchMedia = window.matchMedia(query);
     setMatches(matchMedia.matches);
@@ -16,8 +20,6 @@ const useMediaQuery = (query: string, serverValue = true): boolean => {
       matchMedia.removeEventListener('change', handleMatch);
     };
   }, [query]);
-
-  if (typeof document === 'undefined') return serverValue;
 
   return matches;
 };
